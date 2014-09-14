@@ -1,0 +1,3 @@
+* Más órdenes.
+* Identificar otros tonos (gris) para diferenciar mensajes de salidas de la pista.
+* Rectificar las salidas de la pista.

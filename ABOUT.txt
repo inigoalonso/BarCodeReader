@@ -1,0 +1,61 @@
+LECTOR DE CÓDIGOS DE BARRAS - BAR CODE READER
+---------------------------------------------
+
+VIDEO		http://www.youtube.com/watch?v=nmkgwYCIZ7w
+
+
+RESUMEN
+
+Un proyecto sencillo para probar algunos de los sensores del kit LEGO Mindstorms Education NXT-G (9797). Programado con RobotC. El robot lee las órdenes de los códigos de barras, las ejecuta y espera confirmación acústica para seguir.
+
+
+ABSTRACT
+
+A simple project intended to try some of the sensors of the LEGO Mindstorms Education NXT-G (9797) kit. Programmed using RobotC. The robot reads its orders from the bar codes, executes them and waits for acoustic confirmation before going on.
+
+
+MONTAJE
+
+Las conexiones a la unidad central se asumen de la siguiente manera:
+	Actuadores:
+		A	"Chutador"
+		B	Motor izquierdo
+		C	Motor derecho
+	Sensores:
+		1	Libre
+		2	Micrófono
+		3	Sensor lumínico
+		4	Ultrasonidos (sónar)
+
+
+USO
+
+Para compilar y usar este programa es necesario usar el software ROBOTC (versión 1.40). Es posible descargar [http://www.robotc.net/content/lego_down/lego_down.html] y usar durante 30 días una versión de prueba plenamente funcional. El precio de la licencia para un usuario único es de US$30.
+
+
+DESCRIPCIÓN
+
+Este programa tiene la intención de demostrar la capacidad del sistema de LEGO Mindstorms [http://mindstorms.lego.com/eng/Overview/] de ser programado para usar varios de sus sensores en un programa no trivial. Esta escrito en RobotC [http://www.robotc.net/] un lenguaje derivado de C que dispone de un IDE para el entorno Windows, cuya principal característica es un potente debugger en tiempo real.
+
+A continuación se describe la ejecución típica del programa:
+
+El robot empezará tomando el valor de la “claridad” del suelo mediante su sensor lumínico, este valor se tomará como referencia durante toda la ejecución del programa. A continuación comenzará a moverse hacia adelante mediante las dos ruedas provistas de servomotores. Cuando el sensor lumínico detecte un oscurecimiento suficiente del suelo, comenzará a registrar el mensaje codificado, banda por banda hasta su finalización. En el caso de que la banda registrada exceda cierto valor (4 cm), el robot se detiene (esto sucede si por ejemplo se sale de la pista, supuesta de color blanco). Una vez leído el mensaje del código de barras, se ejecuta la orden en él descrita. Las órdenes involucran tanto distintos movimientos del propio robot, como del “chutador” del que dispone, así como condiciones impuestas por las medidas del sensor de ultrasonidos.
+
+Las órdenes actualmente programadas y los códigos correspondientes son las siguientes:
+
+	0 Avanzar
+	101 Avanzar hasta obstáculo, chutar hacia la derecha y girar 90º hacia izquierda
+	110 Avanzar hasta obstáculo, chutar hacia la izquierda y girar 90º hacia derecha
+	102 Avanzar hasta obstáculo y girar 180º
+	111 Avanzar hasta obstáculo y girar 90º hacia la derecha
+	120 Avanzar hasta obstáculo y girar 90º hacia la izquierda
+	103 Girar 45º hacia la derecha
+	112 Girar 45º hacia la izquierda
+	121 Girar 90º hacia la derecha
+	130 Girar 90º hacia la izquierda
+	104 Girar 180º hacia la derecha
+	113 Girar 180º hacia la derecha y marcha atrás
+	1000 Parar
+
+Cuando se termina lo ordenado, se emite un pitido (mediante el altavoz incorporado en la unidad central) indicándolo y se espera, durante cinco segundos, la orden de seguir avanzando en busca de más órdenes, que ha de ser captada por el micrófono como un ruido fuerte (p.e. una palmada).
+
